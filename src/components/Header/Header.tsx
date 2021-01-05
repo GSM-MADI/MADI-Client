@@ -7,7 +7,7 @@ const Header: React.FC = () => {
     <S.Positioner>
       <S.ContentWrapper>
         <S.Logo>
-          <Logo />
+          <Logo width={100} height={37} />
         </S.Logo>
         <S.NavBarWrapper>
           <S.Content to="/">API 사용법</S.Content>
