@@ -1,7 +1,12 @@
+import PageTemplate from "pages/Template/PageTemplate";
 import React from "react";
 
 const MainPage: React.FC = () => {
-  return <div>메인 페이지</div>;
+  return (
+    <PageTemplate>
+      <div>내용</div>
+    </PageTemplate>
+  );
 };
 
 export default MainPage;
