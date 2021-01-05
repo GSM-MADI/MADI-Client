@@ -4,7 +4,7 @@ const LogoIcon: React.FC = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       {...props}
-      width={110}
+      width={100}
       height={37}
       viewBox="0 0 138 37"
       fill="none"
