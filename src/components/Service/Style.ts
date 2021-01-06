@@ -72,11 +72,15 @@ export const AppState = styled.div`
 
 export const AppNameWrapper = styled(Link)`
   display: flex;
-  width: 70%;
+  width: 100%;
   height: 80px;
   justify-content: flex-start;
   align-items: center;
   text-decoration: none;
+
+  &:hover {
+    background-color: #d1d0d0;
+  }
 `;
 
 export const SelectedAppNameWrapper = styled(Link)`
@@ -97,10 +101,12 @@ export const AppColor = styled.div<StyleProps>`
   border-radius: 28px;
   background-color: ${(props) => props.colorCode};
   margin-right: 16px;
+  margin-left: 45px;
 `;
 
 export const AppName = styled.div`
   font-weight: bold;
+  padding-left: 5px;
   font-size: 20px;
   color: #000000;
   padding-bottom: 4px;
