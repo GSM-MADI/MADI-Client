@@ -18,7 +18,7 @@ const Main: React.FC = () => {
           </S.SubTitle>
         </S.TitleContent>
         <S.DocsWrapper>
-          <S.Document>Docs 보러가기 →</S.Document>
+          <S.Document to="/direction">Docs 보러가기 →</S.Document>
         </S.DocsWrapper>
       </S.TitleWrapper>
       <S.IconWrapper>

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const FadeIn = keyframes`
   from {
@@ -69,7 +70,7 @@ export const DocsWrapper = styled.div`
   animation-duration: 1.2s;
 `;
 
-export const Document = styled.button`
+export const Document = styled(Link)`
   display: flex;
   width: 380px;
   height: 60px;
@@ -82,6 +83,8 @@ export const Document = styled.button`
   font-size: 20px;
   color: #000000;
   transition: all 1s, color 0.5s;
+  text-decoration: none;
+
   &:hover {
     background-color: black;
     color: white;
