@@ -39,10 +39,19 @@ export const NavBarWrapper = styled.div`
 export const Content = styled(Link)`
   margin-left: 5rem;
   width: auto;
+  height: 70px;
   font-weight: 200;
   font-size: 20px;
   color: black;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #b7b4b4;
+    border-bottom: 3px solid #b7b4b4;
+    cursor: pointer;
+  }
 `;
 
 export const AuthWrapper = styled.div`
@@ -59,4 +68,13 @@ export const AuthContent = styled(Link)`
   font-size: 20px;
   color: black;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 70px;
+
+  &:hover {
+    color: #b7b4b4;
+    border-bottom: 3px solid #b7b4b4;
+    cursor: pointer;
+  }
 `;
