@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface StyleProps {
@@ -9,6 +10,7 @@ export const Positioner = styled.div`
   width: 100%;
   height: calc(100vh - 70px);
   margin-top: 70px;
+  overflow: hidden;
 `;
 
 export const AppListWrapper = styled.div`
@@ -26,8 +28,9 @@ export const AppInfoWrapper = styled.div`
   height: 100%;
   background-color: #ffffff;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const Title = styled.div`
@@ -67,12 +70,25 @@ export const AppState = styled.div`
   color: #3367d6;
 `;
 
-export const AppNameWrapper = styled.div`
+export const AppNameWrapper = styled(Link)`
   display: flex;
   width: 70%;
   height: 80px;
   justify-content: flex-start;
   align-items: center;
+  text-decoration: none;
+`;
+
+export const SelectedAppNameWrapper = styled(Link)`
+  display: flex;
+  width: 100%;
+  height: 80px;
+
+  border-bottom: 3px solid #8d8d8d;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  padding-left: 70px;
 `;
 
 export const AppColor = styled.div<StyleProps>`

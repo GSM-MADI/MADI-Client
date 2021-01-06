@@ -1,6 +1,11 @@
 import { Service } from "components";
 import PageTemplate from "pages/Template/PageTemplate";
 import React from "react";
+import { MatchType } from "styles/Styled";
+
+interface ServicePageProps {
+  match: MatchType;
+}
 
 const AppListDummyData = [
   {
@@ -12,6 +17,7 @@ const AppListDummyData = [
     authority: ["name", "gender", "std_no"],
     client_id: "147483647",
     client_secret: "adsfasd-asdasd56-a4ds891f53q",
+    color: "#3367D6",
   },
   {
     name: "Olio",
@@ -20,8 +26,9 @@ const AppListDummyData = [
     redirect_url: "http://oilo-gsm.com/loginCallBack",
     approved_domain: ["olio-gsm.com", "gsmOlio.org"],
     authority: ["name", "std_no"],
-    client_id: "147443577",
+    client_id: "147446577",
     client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    color: "#52A865",
   },
   {
     name: "MADI",
@@ -32,6 +39,7 @@ const AppListDummyData = [
     authority: ["name", "std_no"],
     client_id: "147443577",
     client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    color: "#F4B049",
   },
   {
     name: "WoungSub",
@@ -40,15 +48,16 @@ const AppListDummyData = [
     redirect_url: "http://oilo-gsm.com/loginCallBack",
     approved_domain: ["olio-gsm.com", "gsmOlio.org"],
     authority: ["name", "std_no"],
-    client_id: "147443577",
+    client_id: "147444577",
     client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    color: "#FF9B85",
   },
 ];
 
-const ServicePage: React.FC = () => {
+const ServicePage: React.FC<ServicePageProps> = ({ match }) => {
   return (
     <PageTemplate>
-      <Service AppData={AppListDummyData} />
+      <Service AppData={AppListDummyData} match={match} />
     </PageTemplate>
   );
 };

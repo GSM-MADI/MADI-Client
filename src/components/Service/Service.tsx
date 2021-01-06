@@ -1,4 +1,5 @@
 import React from "react";
+import { MatchType } from "styles/Styled";
 import * as S from "./Style";
 
 type AppData = {
@@ -9,10 +10,12 @@ type AppData = {
   authority: string[];
   client_id: string;
   client_secret: string;
+  color: string;
 };
 
 interface ServiceProps {
   AppData: AppData[];
+  match: MatchType;
 }
 
 const GetRandomColor = () => {
@@ -26,13 +29,29 @@ const GetRandomColor = () => {
 
 const MappingAppData = (AppData: AppData[]) =>
   AppData.map((App, idx) => (
-    <S.AppNameWrapper key={idx}>
-      <S.AppColor colorCode={GetRandomColor()} />
+    <S.AppNameWrapper to={`${App.client_id}`} key={idx}>
+      <S.AppColor colorCode={App.color} />
       <S.AppName>{App.name}</S.AppName>
     </S.AppNameWrapper>
   ));
 
-const Service: React.FC<ServiceProps> = ({ AppData }) => {
+const CurrentAppData = (AppData: AppData[], url: string) =>
+  AppData.map((App, idx) => {
+    let path = url.split("/")[3];
+    console.log(path);
+    if (App.client_id === path) {
+      return (
+        <S.SelectedAppNameWrapper to={`${App.client_id}`} key={idx}>
+          <S.AppColor colorCode={App.color} />
+          <S.AppName>{App.name}</S.AppName>
+        </S.SelectedAppNameWrapper>
+      );
+    } else {
+      return null;
+    }
+  });
+
+const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
   return (
     <S.Positioner>
       <S.AppListWrapper>
@@ -43,7 +62,7 @@ const Service: React.FC<ServiceProps> = ({ AppData }) => {
         </S.AppStateWrapper>
         {MappingAppData(AppData)}
       </S.AppListWrapper>
-      <S.AppInfoWrapper>앱정보</S.AppInfoWrapper>
+      <S.AppInfoWrapper>{CurrentAppData(AppData, match.url)}</S.AppInfoWrapper>
     </S.Positioner>
   );
 };

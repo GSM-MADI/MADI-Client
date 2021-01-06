@@ -9,7 +9,7 @@ const App: React.FC = () => {
       <Route exact path="/" component={Main} />
       <Route path="/auth/:state" component={AuthTemplate} />
       <Route path="/direction" component={Direction} />
-      <Route path="/service/apps" component={Service} />
+      <Route path="/service/apps/:id" component={Service} />
     </React.Fragment>
   );
 };
