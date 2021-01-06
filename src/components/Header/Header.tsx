@@ -14,7 +14,7 @@ const Header: React.FC = () => {
           <S.Content to="/">API 서비스</S.Content>
         </S.NavBarWrapper>
         <S.AuthWrapper>
-          <S.AuthContent to="/">로그인</S.AuthContent>
+          <S.AuthContent to="/auth/login">로그인</S.AuthContent>
         </S.AuthWrapper>
       </S.ContentWrapper>
     </S.Positioner>

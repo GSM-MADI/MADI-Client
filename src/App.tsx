@@ -7,7 +7,7 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       <Route exact path="/" component={Main} />
-      <Route path="/auth" component={AuthTemplate} />
+      <Route path="/auth/:state" component={AuthTemplate} />
     </React.Fragment>
   );
 };
