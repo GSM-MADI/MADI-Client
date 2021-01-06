@@ -43,6 +43,11 @@ export const Content = styled(Link)`
   font-size: 20px;
   color: black;
   text-decoration: none;
+
+  &:hover {
+    color: #00abfc;
+    cursor: pointer;
+  }
 `;
 
 export const AuthWrapper = styled.div`
@@ -59,4 +64,9 @@ export const AuthContent = styled(Link)`
   font-size: 20px;
   color: black;
   text-decoration: none;
+
+  &:hover {
+    color: #00abfc;
+    cursor: pointer;
+  }
 `;
