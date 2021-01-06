@@ -100,7 +100,7 @@ export const AuthContent = styled.div`
 export const AuthKind = styled.div`
   position: relative;
   width: 150px;
-  top: 78px;
+  top: 86px;
   background-color: white;
   z-index: 2;
   font-weight: 200;
@@ -112,7 +112,7 @@ export const AuthBox = styled.div<StyleProps>`
   margin-top: 10px;
   display: flex;
   width: 570px;
-  height: ${(props) => (props.match.url === "/auth/login" ? "380px" : "680px")};
+  height: ${(props) => (props.match.url === "/auth/login" ? "380px" : "660px")};
   border: 0.5px solid #000000;
   border-radius: 20px;
   flex-direction: column;

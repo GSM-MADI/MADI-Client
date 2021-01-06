@@ -3,6 +3,7 @@ import * as S from "./Style";
 import Logo from "assets/svg/Logo";
 import AuthIcon from "assets/svg/AuthIcon";
 import { MatchType } from "styles/Styled";
+import { Link } from "react-router-dom";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 
@@ -26,7 +27,9 @@ const AuthTemplate: React.FC<AuthProps> = ({ match }) => {
       <S.AuthTitleWrapper>
         <S.AuthTitleContent>
           <S.AuthTitle>
-            <Logo width={212} height={102} />
+            <Link to="/">
+              <Logo width={212} height={102} />
+            </Link>
             <div>계정 하나로 충분합니다.</div>
           </S.AuthTitle>
           <S.SubTitle>
@@ -45,7 +48,9 @@ const AuthTemplate: React.FC<AuthProps> = ({ match }) => {
             <S.AuthKind>Sign Up to MADI</S.AuthKind>
           )}
           <S.LogoWrapper>
-            <Logo width={145} height={64} />
+            <Link to="/">
+              <Logo width={145} height={64} />
+            </Link>
           </S.LogoWrapper>
           <S.AuthBox match={match}>{AuthData(match.url)}</S.AuthBox>
         </S.AuthContent>
