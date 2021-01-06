@@ -1,10 +1,28 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { MatchType } from "styles/Styled";
 
 interface StyleProps {
   match: MatchType;
 }
+
+export const FadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const Move = keyframes`
+    from {
+      transform: translateY(10vh);
+    }
+    to {
+      transform: translateY(0px);
+    }
+`;
 
 export const Positioner = styled.div`
   display: flex;

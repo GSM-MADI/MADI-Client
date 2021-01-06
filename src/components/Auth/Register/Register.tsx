@@ -5,7 +5,7 @@ const Register: React.FC = () => {
   return (
     <>
       <S.RegisterAuthInputWrapper>
-        <div style={{ fontWeight: "bold" }}>Sign In</div>
+        <div style={{ fontWeight: "bold" }}>Sign Up</div>
         <S.Input placeholder="Email" />
         <S.Input placeholder="Password" />
         <S.Input placeholder="Check Password" />
@@ -17,7 +17,7 @@ const Register: React.FC = () => {
         </S.SelectBox>
       </S.RegisterAuthInputWrapper>
       <S.RegisterAuthSubmitWrapper>
-        <S.SubmitButton>SIGN IN</S.SubmitButton>
+        <S.SubmitButton>SIGN UP</S.SubmitButton>
       </S.RegisterAuthSubmitWrapper>
     </>
   );

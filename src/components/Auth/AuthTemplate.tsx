@@ -39,7 +39,11 @@ const AuthTemplate: React.FC<AuthProps> = ({ match }) => {
       </S.AuthTitleWrapper>
       <S.AuthWrapper>
         <S.AuthContent>
-          <S.AuthKind>Sign In to MADI</S.AuthKind>
+          {match.url === "/auth/login" ? (
+            <S.AuthKind>Sign In to MADI</S.AuthKind>
+          ) : (
+            <S.AuthKind>Sign Up to MADI</S.AuthKind>
+          )}
           <S.LogoWrapper>
             <Logo width={145} height={64} />
           </S.LogoWrapper>
