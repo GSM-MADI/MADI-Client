@@ -16,6 +16,11 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         outline: none;
     }
+
+    html,
+    body {
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+    }
 `;
 
 export const PageBody = styled.div`

@@ -15,7 +15,7 @@ const AppListDummyData = [
     redirect_url: "http://gsm-space.com/loginCallBack",
     approved_domain: ["gsm-space.com", "gsmspace.org"],
     authority: ["name", "gender", "std_no"],
-    client_id: "147483647",
+    client_id: "2071683209630438",
     client_secret: "adsfasd-asdasd56-a4ds891f53q",
     color: "#3367D6",
   },

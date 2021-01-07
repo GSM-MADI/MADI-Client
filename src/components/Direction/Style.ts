@@ -24,6 +24,8 @@ export const SideBarWrapper = styled.div`
 export const ContentWrapper = styled.div`
   width: 85%;
   height: 100%;
+  font-size: 50px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;

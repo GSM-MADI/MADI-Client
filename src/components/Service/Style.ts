@@ -79,7 +79,7 @@ export const AppNameWrapper = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    background-color: #d1d0d0;
+    background-color: #ecf3fb;
   }
 `;
 
@@ -110,4 +110,70 @@ export const AppName = styled.div`
   font-size: 20px;
   color: #000000;
   padding-bottom: 4px;
+`;
+
+export const AppContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 80px);
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+export const AppInfo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 4rem;
+  margin-left: 4rem;
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  background-color: #c4c4c4;
+  border-radius: 10px;
+`;
+
+export const App = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  margin-left: 40px;
+`;
+
+export const Appdiv = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  margin-left: 20px;
+
+  div {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  input {
+    margin-top: 20px;
+    width: 600px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #9e9e9e;
+    padding-left: 20px;
+  }
 `;
