@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MatchType } from "styles/Styled";
 import AddService from "./AddService/AddService";
@@ -54,7 +54,12 @@ const CurrentAppData = (AppData: AppData[], url: string) =>
     }
   });
 
-const CurrentAppInfoData = (AppData: AppData[], url: string) =>
+const CurrentAppInfoData = (
+  AppData: AppData[],
+  url: string,
+  isLook: boolean,
+  setisLook: React.Dispatch<React.SetStateAction<boolean>>
+) =>
   AppData.map((App, idx) => {
     let path = url.split("/")[3];
     console.log(path);
@@ -71,7 +76,15 @@ const CurrentAppInfoData = (AppData: AppData[], url: string) =>
               </S.InputWrapper>
               <S.InputWrapper>
                 <div style={{ color: "#727272" }}>앱 시크릿 코드</div>
-                <S.Appdiv>OOOOOOOOOOOOOOOOOOO</S.Appdiv>
+                {isLook ? (
+                  <S.Appdiv onClick={() => setisLook(false)}>
+                    {App.client_secret}
+                  </S.Appdiv>
+                ) : (
+                  <S.Appdiv onClick={() => setisLook(true)}>
+                    OOOOOOOOOOOOOOOOOOO
+                  </S.Appdiv>
+                )}
               </S.InputWrapper>
 
               <S.InputWrapper>
@@ -96,6 +109,7 @@ const CurrentAppInfoData = (AppData: AppData[], url: string) =>
   });
 
 const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
+  const [isLook, setisLook] = useState(false);
   return (
     <S.Positioner>
       <S.AppListWrapper>
@@ -104,7 +118,9 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
           <Link to="/service/apps/add" style={{ textDecoration: "none" }}>
             <S.AppState>앱 추가</S.AppState>
           </Link>
-          <S.AppState>앱 삭제</S.AppState>
+          <S.AppState onClick={() => alert("삭제되었습니다.")}>
+            앱 삭제
+          </S.AppState>
         </S.AppStateWrapper>
         {MappingAppData(AppData)}
       </S.AppListWrapper>
@@ -114,8 +130,10 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
         ) : (
           <>
             {CurrentAppData(AppData, match.url)}
-            {CurrentAppInfoData(AppData, match.url)}
-            <A.NextButton>저장</A.NextButton>
+            {CurrentAppInfoData(AppData, match.url, isLook, setisLook)}
+            <A.NextButton onClick={() => alert("저장되었습니다.")}>
+              저장
+            </A.NextButton>
           </>
         )}
       </S.AppInfoWrapper>
