@@ -7,8 +7,8 @@ const Register: React.FC = () => {
       <S.RegisterAuthInputWrapper>
         <div style={{ fontWeight: "bold" }}>Sign Up</div>
         <S.Input placeholder="Email" />
-        <S.Input placeholder="Password" />
-        <S.Input placeholder="Check Password" />
+        <S.Input placeholder="Password" type="password" />
+        <S.Input placeholder="Check Password" type="password" />
         <S.Input placeholder="학번" />
         <S.Input placeholder="이름" />
         <S.SelectBox>
