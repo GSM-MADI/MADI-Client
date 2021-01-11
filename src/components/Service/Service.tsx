@@ -118,9 +118,7 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
           <Link to="/service/apps/add" style={{ textDecoration: "none" }}>
             <S.AppState>앱 추가</S.AppState>
           </Link>
-          <S.AppState onClick={() => alert("삭제되었습니다.")}>
-            앱 삭제
-          </S.AppState>
+          <S.AppState>앱 삭제</S.AppState>
         </S.AppStateWrapper>
         {MappingAppData(AppData)}
       </S.AppListWrapper>
@@ -131,9 +129,7 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
           <>
             {CurrentAppData(AppData, match.url)}
             {CurrentAppInfoData(AppData, match.url, isLook, setisLook)}
-            <A.NextButton onClick={() => alert("저장되었습니다.")}>
-              저장
-            </A.NextButton>
+            <A.NextButton>저장</A.NextButton>
           </>
         )}
       </S.AppInfoWrapper>
