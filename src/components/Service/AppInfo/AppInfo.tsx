@@ -51,7 +51,6 @@ const AppInfo: React.FC<AppInfoProps> = ({ form, setForm }) => {
           placeholder="앱 이름을 입력하세요."
           value={AppName}
           onChange={handleName}
-          type="text"
         />
       </S.InputWrapper>
       <S.InputWrapper>
@@ -68,7 +67,6 @@ const AppInfo: React.FC<AppInfoProps> = ({ form, setForm }) => {
           placeholder="Redirect URI를 입력하세요."
           value={redirect_url}
           onChange={handleRedirect}
-          type="text"
         />
       </S.InputWrapper>
     </React.Fragment>

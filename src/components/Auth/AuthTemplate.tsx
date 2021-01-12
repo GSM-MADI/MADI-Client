@@ -11,13 +11,34 @@ interface AuthProps {
   match: MatchType;
 }
 
+type LoginInput = {
+  email: string;
+  password: string;
+};
+
+type RegisterInput = {
+  email: string;
+  password: string;
+  std_no: string;
+  gender: string;
+  name: string;
+};
+
 const AuthData = (url: string) => {
+  const LoginonSubmit = (form: LoginInput) => {
+    console.log(form);
+  };
+
+  const RegisteronSubmit = (form: RegisterInput) => {
+    console.log(form);
+  };
+
   console.log(url);
   switch (url) {
     case "/auth/login":
-      return <Login />;
+      return <Login onSubmit={LoginonSubmit} />;
     case "/auth/register":
-      return <Register />;
+      return <Register onSubmit={RegisteronSubmit} />;
   }
 };
 

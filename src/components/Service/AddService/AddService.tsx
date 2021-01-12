@@ -134,10 +134,8 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
       </S.CreatedAppNameWrapper>
       <S.AppInfoWrapper>
         <S.AppContentWrapper>
-          <form onSubmit={handleSubmit}>
-            {AppSettingNumber(AppNum, form, setForm)}
-            {AppButton(AppNum, setAppNum)}
-          </form>
+          {AppSettingNumber(AppNum, form, setForm)}
+          {AppButton(AppNum, setAppNum)}
         </S.AppContentWrapper>
       </S.AppInfoWrapper>
     </React.Fragment>
