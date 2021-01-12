@@ -26,3 +26,12 @@ export const GlobalStyle = createGlobalStyle`
 export const PageBody = styled.div`
   display: flex;
 `;
+
+export const SubmitForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;

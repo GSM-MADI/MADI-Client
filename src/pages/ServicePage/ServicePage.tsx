@@ -1,6 +1,7 @@
 import { Service } from "components";
+import { TokenClient } from "lib/Axios";
 import PageTemplate from "pages/Template/PageTemplate";
-import React from "react";
+import React, { useEffect } from "react";
 import { MatchType } from "styles/Styled";
 
 interface ServicePageProps {
@@ -55,6 +56,17 @@ const AppListDummyData = [
 ];
 
 const ServicePage: React.FC<ServicePageProps> = ({ match }) => {
+  useEffect(() => {
+    TokenClient.get("/oauth")
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+      })
+      .catch((response) => {
+        console.log(response.data);
+        console.log(response.status);
+      });
+  }, []);
   return (
     <PageTemplate>
       <Service AppData={AppListDummyData} match={match} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import * as S from "../AuthStyle";
-import { baseUrl } from "config/config.json";
+import { client } from "lib/Axios";
+import { SubmitForm } from "styles/GlobalStyle";
 
 type LoginSubmitFormProps = {
   onSubmit: (form: { email: string; password: string }) => void;
@@ -33,21 +33,23 @@ const Login: React.FC<LoginSubmitFormProps> = ({ onSubmit }) => {
     console.log(form);
     e.preventDefault();
     onSubmit(form);
-    axios
-      .post(`${baseUrl}/login`, {
+    client
+      .post("/login`", {
         email: email,
         password: password,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        console.log(response.status);
       })
       .catch((response) => {
-        console.log(response);
+        console.log(response.data);
+        console.log(response.status);
       });
   };
   const { email, password } = form;
   return (
-    <S.SubmitForm onSubmit={handleSubmit}>
+    <SubmitForm onSubmit={handleSubmit}>
       <S.LoginAuthInputWrapper>
         <div style={{ fontWeight: "bold" }}>Sign In</div>
         <S.Input placeholder="Email" value={email} onChange={handleEmail} />
@@ -61,7 +63,7 @@ const Login: React.FC<LoginSubmitFormProps> = ({ onSubmit }) => {
       <S.LoginAuthSubmitWrapper>
         <S.SubmitButton>SIGN IN</S.SubmitButton>
       </S.LoginAuthSubmitWrapper>
-    </S.SubmitForm>
+    </SubmitForm>
   );
 };
 
