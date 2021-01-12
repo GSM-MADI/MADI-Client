@@ -4,6 +4,24 @@ import AppInfo from "../AppInfo/AppInfo";
 import AppAuthority from "../AppAuthority/AppAuthority";
 import InfoApps from "../../../assets/background/InfoApps.png";
 
+type SubmitFormProps = {
+  onSubmit: (form: {
+    AppName: string;
+    image: string;
+    redirect_url: string;
+    approved_domain: string[];
+    authority: string[];
+  }) => void;
+};
+
+type RequestAppData = {
+  AppName: string;
+  image: string;
+  redirect_url: string;
+  approved_domain: string[];
+  authority: string[];
+};
+
 const AppInfoList = [
   {
     Info: "앱 정보",
@@ -19,10 +37,14 @@ const AppInfoList = [
   },
 ];
 
-const AppSettingNumber = (num: Number) => {
+const AppSettingNumber = (
+  num: Number,
+  form: RequestAppData,
+  setForm: React.Dispatch<React.SetStateAction<RequestAppData>>
+) => {
   switch (num) {
     case 1:
-      return <AppInfo />;
+      return <AppInfo form={form} setForm={setForm} />;
     case 2:
       return <AppAuthority />;
     case 3:
@@ -62,8 +84,31 @@ const AppButton = (
   }
 };
 
-const AddService: React.FC = () => {
+const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
   const [AppNum, setAppNum] = useState(1);
+
+  const [form, setForm] = useState({
+    AppName: "",
+    image: "",
+    redirect_url: "",
+    approved_domain: [""],
+    authority: [""],
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(form);
+    setForm({
+      AppName: "",
+      image: "",
+      redirect_url: "",
+      approved_domain: [""],
+      authority: [""],
+    });
+  };
+
+  console.log(form);
+
   return (
     <React.Fragment>
       <S.CreatedAppNameWrapper>
@@ -89,8 +134,10 @@ const AddService: React.FC = () => {
       </S.CreatedAppNameWrapper>
       <S.AppInfoWrapper>
         <S.AppContentWrapper>
-          {AppSettingNumber(AppNum)}
-          {AppButton(AppNum, setAppNum)}
+          <form onSubmit={handleSubmit}>
+            {AppSettingNumber(AppNum, form, setForm)}
+            {AppButton(AppNum, setAppNum)}
+          </form>
         </S.AppContentWrapper>
       </S.AppInfoWrapper>
     </React.Fragment>

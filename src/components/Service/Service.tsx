@@ -16,6 +16,14 @@ type AppData = {
   color: string;
 };
 
+type RequestApp = {
+  AppName: string;
+  image: string;
+  redirect_url: string;
+  approved_domain: string[];
+  authority: string[];
+};
+
 interface ServiceProps {
   AppData: AppData[];
   match: MatchType;
@@ -110,6 +118,10 @@ const CurrentAppInfoData = (
 
 const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
   const [isLook, setisLook] = useState(false);
+
+  const onSubmit = (form: RequestApp) => {
+    console.log(form);
+  };
   return (
     <S.Positioner>
       <S.AppListWrapper>
@@ -124,7 +136,7 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
       </S.AppListWrapper>
       <S.AppInfoWrapper>
         {match.url === "/service/apps/add" ? (
-          <AddService />
+          <AddService onSubmit={onSubmit} />
         ) : (
           <>
             {CurrentAppData(AppData, match.url)}
