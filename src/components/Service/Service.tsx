@@ -16,6 +16,14 @@ type AppData = {
   color: string;
 };
 
+type RequestApp = {
+  AppName: string;
+  image: string;
+  redirect_url: string;
+  approved_domain: string[];
+  authority: string[];
+};
+
 interface ServiceProps {
   AppData: AppData[];
   match: MatchType;
@@ -110,6 +118,10 @@ const CurrentAppInfoData = (
 
 const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
   const [isLook, setisLook] = useState(false);
+
+  const onSubmit = (form: RequestApp) => {
+    console.log(form);
+  };
   return (
     <S.Positioner>
       <S.AppListWrapper>
@@ -118,22 +130,18 @@ const Service: React.FC<ServiceProps> = ({ AppData, match }) => {
           <Link to="/service/apps/add" style={{ textDecoration: "none" }}>
             <S.AppState>앱 추가</S.AppState>
           </Link>
-          <S.AppState onClick={() => alert("삭제되었습니다.")}>
-            앱 삭제
-          </S.AppState>
+          <S.AppState>앱 삭제</S.AppState>
         </S.AppStateWrapper>
         {MappingAppData(AppData)}
       </S.AppListWrapper>
       <S.AppInfoWrapper>
         {match.url === "/service/apps/add" ? (
-          <AddService />
+          <AddService onSubmit={onSubmit} />
         ) : (
           <>
             {CurrentAppData(AppData, match.url)}
             {CurrentAppInfoData(AppData, match.url, isLook, setisLook)}
-            <A.NextButton onClick={() => alert("저장되었습니다.")}>
-              저장
-            </A.NextButton>
+            <A.NextButton>저장</A.NextButton>
           </>
         )}
       </S.AppInfoWrapper>
