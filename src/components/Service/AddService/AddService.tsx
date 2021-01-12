@@ -5,6 +5,7 @@ import AppAuthority from "../AppAuthority/AppAuthority";
 import AppSummary from "../AppSummary/AppSummary";
 import { TokenClient } from "lib/Axios";
 import { SubmitForm } from "styles/GlobalStyle";
+import { getToken } from "lib/Token";
 
 type SubmitFormProps = {
   onSubmit: (form: {
@@ -118,6 +119,7 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
       e.preventDefault();
       console.log(form);
       onSubmit(form);
+      console.log(getToken());
 
       TokenClient.post("/oauth", {
         name: AppName,
@@ -126,9 +128,11 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
         authority: authority,
       })
         .then((response) => {
+          console.log(response.data);
           console.log(response.status);
         })
         .catch((response) => {
+          console.log(response.data);
           console.log(response.status);
         });
 

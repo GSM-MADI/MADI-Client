@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as S from "../AuthStyle";
+import axios from "axios";
 import { client } from "lib/Axios";
 import { SubmitForm } from "styles/GlobalStyle";
 
@@ -34,11 +35,12 @@ const Login: React.FC<LoginSubmitFormProps> = ({ onSubmit }) => {
     e.preventDefault();
     onSubmit(form);
     client
-      .post("/login`", {
+      .post("/login", {
         email: email,
         password: password,
       })
       .then((response) => {
+        sessionStorage.setItem("MADI-token", response.data.token);
         console.log(response.data);
         console.log(response.status);
       })

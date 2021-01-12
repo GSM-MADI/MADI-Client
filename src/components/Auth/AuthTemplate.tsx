@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./Style";
 import Logo from "assets/svg/Logo";
 import AuthIcon from "assets/svg/AuthIcon";
@@ -43,6 +43,10 @@ const AuthData = (url: string) => {
 };
 
 const AuthTemplate: React.FC<AuthProps> = ({ match }) => {
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
+
   return (
     <S.Positioner>
       <S.AuthTitleWrapper>
