@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import * as S from "./Style";
 import AppInfo from "../AppInfo/AppInfo";
 import AppAuthority from "../AppAuthority/AppAuthority";
-import InfoApps from "../../../assets/background/InfoApps.png";
+import AppSummary from "../AppSummary/AppSummary";
+import { TokenClient } from "lib/Axios";
+import { SubmitForm } from "styles/GlobalStyle";
+import { getToken } from "lib/Token";
 
 type SubmitFormProps = {
   onSubmit: (form: {
@@ -48,7 +51,10 @@ const AppSettingNumber = (
     case 2:
       return <AppAuthority />;
     case 3:
-      return <img alt="이미지" src={InfoApps} />;
+      return <AppSummary />;
+    case 4:
+      console.log(form);
+      return <AppSummary />;
   }
 };
 
@@ -58,27 +64,36 @@ const AppButton = (
 ) => {
   switch (num) {
     case 1:
-      return (
-        <S.NextButton onClick={() => setAppNum(num + 1)}>다음으로</S.NextButton>
-      );
+      return <S.NextButton onClick={() => setAppNum(2)}>다음으로</S.NextButton>;
     case 2:
       return (
         <>
-          <S.PreviousButton onClick={() => setAppNum(num - 1)}>
+          <S.PreviousButton onClick={() => setAppNum(1)}>
             이전으로
           </S.PreviousButton>
-          <S.NextButton onClick={() => setAppNum(num + 1)}>
-            다음으로
-          </S.NextButton>
+          <S.NextButton onClick={() => setAppNum(3)}>다음으로</S.NextButton>
         </>
       );
     case 3:
       return (
         <>
-          <S.PreviousButton onClick={() => setAppNum(num - 1)}>
+          <S.PreviousButton onClick={() => setAppNum(2)}>
             이전으로
           </S.PreviousButton>
-          <S.NextButton>저장</S.NextButton>
+          <S.NextButton type="submit" onClick={() => setAppNum(4)}>
+            저장
+          </S.NextButton>
+        </>
+      );
+    case 4:
+      return (
+        <>
+          <S.PreviousButton onClick={() => setAppNum(2)}>
+            이전으로
+          </S.PreviousButton>
+          <S.NextButton type="submit" onClick={() => setAppNum(4)}>
+            저장
+          </S.NextButton>
         </>
       );
   }
@@ -92,25 +107,41 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
     image: "",
     redirect_url: "",
     approved_domain: [""],
-    authority: [""],
+    authority: ["name", "gender", "std_no", "email"],
   });
 
+  const { AppName, redirect_url, approved_domain, authority } = form;
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(form);
-    setForm({
-      AppName: "",
-      image: "",
-      redirect_url: "",
-      approved_domain: [""],
-      authority: [""],
-    });
+    if (AppNum !== 4) {
+      e.preventDefault();
+    } else {
+      e.preventDefault();
+      console.log(form);
+      onSubmit(form);
+      console.log(getToken());
+
+      TokenClient.post("/oauth", {
+        name: AppName,
+        redirect_uri: redirect_url,
+        approved_domain: approved_domain,
+        authority: authority,
+      })
+        .then((response) => {
+          console.log(response.data);
+          console.log(response.status);
+        })
+        .catch((response) => {
+          console.log(response.data);
+          console.log(response.status);
+        });
+
+      setAppNum(3);
+    }
   };
 
-  console.log(form);
-
   return (
-    <React.Fragment>
+    <SubmitForm onSubmit={handleSubmit}>
       <S.CreatedAppNameWrapper>
         {AppInfoList.map((App, idx) => {
           if (AppNum === App.Number) {
@@ -138,7 +169,7 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
           {AppButton(AppNum, setAppNum)}
         </S.AppContentWrapper>
       </S.AppInfoWrapper>
-    </React.Fragment>
+    </SubmitForm>
   );
 };
 

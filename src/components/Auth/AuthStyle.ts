@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const SubmitForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const LoginAuthInputWrapper = styled.div`
   display: flex;
   width: 70%;

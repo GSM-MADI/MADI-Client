@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as S from "../AuthStyle";
-import axios from "axios";
-import { baseUrl } from "config/config.json";
+import { client } from "lib/Axios";
+import { SubmitForm } from "styles/GlobalStyle";
 
 type RegisterSubmitFormProps = {
   onSubmit: (form: {
@@ -68,23 +68,25 @@ const Register: React.FC<RegisterSubmitFormProps> = ({ onSubmit }) => {
     console.log(form);
     e.preventDefault();
     onSubmit(form);
-    axios
-      .post(`${baseUrl}/user/register`, {
+    client
+      .post("/user/register", {
         email: email,
         password: password,
         name: name,
-        stdNo: std_no,
+        std_no: std_no,
         gender: gender,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        console.log(response.status);
       })
       .catch((response) => {
-        console.log(response);
+        console.log(response.data);
+        console.log(response.status);
       });
   };
   return (
-    <S.SubmitForm onSubmit={handleSubmit}>
+    <SubmitForm onSubmit={handleSubmit}>
       <S.RegisterAuthInputWrapper>
         <div style={{ fontWeight: "bold" }}>Sign Up</div>
         <S.Input placeholder="Email" value={email} onChange={handleEmail} />
@@ -105,7 +107,7 @@ const Register: React.FC<RegisterSubmitFormProps> = ({ onSubmit }) => {
       <S.RegisterAuthSubmitWrapper>
         <S.SubmitButton>SIGN UP</S.SubmitButton>
       </S.RegisterAuthSubmitWrapper>
-    </S.SubmitForm>
+    </SubmitForm>
   );
 };
 

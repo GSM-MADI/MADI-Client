@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./Style";
 import Logo from "assets/svg/Logo";
 import { Link } from "react-router-dom";
+import { getToken } from "lib/Token";
 
 const Header: React.FC = () => {
   return (
@@ -17,7 +18,9 @@ const Header: React.FC = () => {
           <S.Content to="/service/apps/default">API 서비스</S.Content>
         </S.NavBarWrapper>
         <S.AuthWrapper>
-          <S.AuthContent to="/auth/login">로그인</S.AuthContent>
+          <S.AuthContent to="/auth/login">
+            {getToken() ? "로그아웃" : "로그인"}
+          </S.AuthContent>
         </S.AuthWrapper>
       </S.ContentWrapper>
     </S.Positioner>

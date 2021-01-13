@@ -41,7 +41,7 @@ interface ServiceProps {
 const MappingAppData = (AppData: AppData[]) =>
   AppData.map((App, idx) => (
     <S.AppNameWrapper to={`${App.client_id}`} key={idx}>
-      <S.AppColor colorCode={App.color} />
+      <S.AppColor colorCode="#52A865" />
       <S.AppName>{App.name}</S.AppName>
     </S.AppNameWrapper>
   ));
@@ -53,7 +53,7 @@ const CurrentAppData = (AppData: AppData[], url: string) =>
     if (App.client_id === path) {
       return (
         <S.SelectedAppNameWrapper to={`${App.client_id}`} key={idx}>
-          <S.AppColor colorCode={App.color} />
+          <S.AppColor colorCode="#52A865" />
           <S.AppName>{App.name}</S.AppName>
         </S.SelectedAppNameWrapper>
       );
