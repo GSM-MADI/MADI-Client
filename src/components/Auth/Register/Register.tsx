@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as S from "../AuthStyle";
 import { client } from "lib/Axios";
 import { SubmitForm } from "styles/GlobalStyle";
+import { useHistory } from "react-router-dom";
 
 type RegisterSubmitFormProps = {
   onSubmit: (form: {
@@ -14,6 +15,7 @@ type RegisterSubmitFormProps = {
 };
 
 const Register: React.FC<RegisterSubmitFormProps> = ({ onSubmit }) => {
+  const history = useHistory();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -77,8 +79,8 @@ const Register: React.FC<RegisterSubmitFormProps> = ({ onSubmit }) => {
         gender: gender,
       })
       .then((response) => {
-        console.log(response.data);
-        console.log(response.status);
+        alert("회원가입 성공!");
+        history.push("/auth/login");
       })
       .catch((response) => {
         console.log(response.data);

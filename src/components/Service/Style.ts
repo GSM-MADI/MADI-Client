@@ -64,10 +64,10 @@ export const AppState = styled.div`
   border: 2px solid #3367d6;
   border-radius: 20px;
   margin: 7px;
-
   font-size: 13px;
   font-weight: 300;
   color: #3367d6;
+  cursor: pointer;
 `;
 
 export const AppNameWrapper = styled(Link)`

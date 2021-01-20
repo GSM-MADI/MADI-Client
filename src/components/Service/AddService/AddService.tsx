@@ -6,6 +6,7 @@ import AppSummary from "../AppSummary/AppSummary";
 import { TokenClient } from "lib/Axios";
 import { SubmitForm } from "styles/GlobalStyle";
 import { getToken } from "lib/Token";
+import { useHistory } from "react-router-dom";
 
 type SubmitFormProps = {
   onSubmit: (form: {
@@ -100,6 +101,7 @@ const AppButton = (
 };
 
 const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
+  const history = useHistory();
   const [AppNum, setAppNum] = useState(1);
 
   const [form, setForm] = useState({
@@ -107,7 +109,7 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
     image: "",
     redirect_url: "",
     approved_domain: [""],
-    authority: ["name", "gender", "std_no", "email"],
+    authority: ["name", "std_no", "gender", "email"],
   });
 
   const { AppName, redirect_url, approved_domain, authority } = form;
@@ -130,10 +132,12 @@ const AddService: React.FC<SubmitFormProps> = ({ onSubmit }) => {
         .then((response) => {
           console.log(response.data);
           console.log(response.status);
+          alert("앱이 생성되었습니다.");
+          history.push("/service/apps/default");
+          window.location.reload();
         })
         .catch((response) => {
-          console.log(response.data);
-          console.log(response.status);
+          console.log(response.response.data);
         });
 
       setAppNum(3);

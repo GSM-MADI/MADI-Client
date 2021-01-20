@@ -1,7 +1,7 @@
 import { Service } from "components";
 import { TokenClient } from "lib/Axios";
 import PageTemplate from "pages/Template/PageTemplate";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MatchType } from "styles/Styled";
 
 interface ServicePageProps {
@@ -16,8 +16,8 @@ const AppListDummyData = [
     redirect_url: "http://gsm-space.com/loginCallBack",
     approved_domain: ["gsm-space.com", "gsmspace.org"],
     authority: ["name", "gender", "std_no"],
-    client_id: "2071683209630438",
-    client_secret: "adsfasd-asdasd56-a4ds891f53q",
+    app_id: "2071683209630438",
+    secret_key: "adsfasd-asdasd56-a4ds891f53q",
     color: "#3367D6",
   },
   {
@@ -27,8 +27,8 @@ const AppListDummyData = [
     redirect_url: "http://oilo-gsm.com/loginCallBack",
     approved_domain: ["olio-gsm.com", "gsmOlio.org"],
     authority: ["name", "std_no"],
-    client_id: "147446577",
-    client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    app_id: "147446577",
+    secret_key: "adsfasd-asdasd56-asdsd32q333q",
     color: "#52A865",
   },
   {
@@ -38,8 +38,8 @@ const AppListDummyData = [
     redirect_url: "http://oilo-gsm.com/loginCallBack",
     approved_domain: ["olio-gsm.com", "gsmOlio.org"],
     authority: ["name", "std_no"],
-    client_id: "147443577",
-    client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    app_id: "147443577",
+    secret_key: "adsfasd-asdasd56-asdsd32q333q",
     color: "#F4B049",
   },
   {
@@ -49,18 +49,22 @@ const AppListDummyData = [
     redirect_url: "http://oilo-gsm.com/loginCallBack",
     approved_domain: ["olio-gsm.com", "gsmOlio.org"],
     authority: ["name", "std_no"],
-    client_id: "147444577",
-    client_secret: "adsfasd-asdasd56-asdsd32q333q",
+    app_id: "147444577",
+    secret_key: "adsfasd-asdasd56-asdsd32q333q",
     color: "#FF9B85",
   },
 ];
 
 const ServicePage: React.FC<ServicePageProps> = ({ match }) => {
+  const [AppListData, setAppListData] = useState([]);
+
   useEffect(() => {
     TokenClient.get("/oauth")
       .then((response) => {
         console.log(response.data);
         console.log(response.status);
+
+        setAppListData(response.data);
       })
       .catch((response) => {
         console.log(response.data);
@@ -69,7 +73,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ match }) => {
   }, []);
   return (
     <PageTemplate>
-      <Service AppData={AppListDummyData} match={match} />
+      <Service AppData={AppListData} match={match} />
     </PageTemplate>
   );
 };
